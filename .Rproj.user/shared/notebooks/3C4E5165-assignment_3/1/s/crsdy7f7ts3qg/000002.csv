@@ -1,0 +1,6 @@
+"0","str_c('There are: ', length(amount_nas), ' missing values')
+"
+"1","[1]"
+"1"," ""There are: 0 missing values"""
+"1","
+"
