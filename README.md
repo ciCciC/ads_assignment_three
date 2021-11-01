@@ -1,4 +1,4 @@
-assignment 3: data visualization
+Data visualization - bakery sales
 ================
 Koray Poyraz
 10/5/2021
