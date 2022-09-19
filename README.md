@@ -1,4 +1,4 @@
-assignment 3: data visualization
+Exploratory Data Analysis: Bakery sales
 ================
 Koray Poyraz
 10/5/2021
