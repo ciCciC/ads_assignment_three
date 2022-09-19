@@ -41,7 +41,7 @@ tail(df_bakery)
 
 check your n's
 ```{r check your n}
-# These N checks are done to get a understanding of the attributes count
+# These N checks are done to get an understanding of the attributes count
 
 # check N by Items
 df_bakery %>% count(Items)
@@ -83,8 +83,8 @@ df_bakery %>%
 ```
 
 
-preperation for good visualization
-```{r preperation for good visualization}
+preparation for visualization
+```{r preperation for visualization}
 
 # The idea here is to get a insight in the sales during weekdays and hours over time
 
@@ -123,8 +123,10 @@ df_bakery_wday %>%
   arrange(hour)
 
 ```
-## Good visualization
-### info:
+
+# Question: what are the hours of the week days that deliver high sales?
+
+## Visualization:
 + geom = bars/ rectangle
 + mapping = x maps hour, y maps count of occurrences, fill in Daypart (level)
 + position = dodge, bin width = 1 (equal to 1 hour) and border color = white
@@ -132,21 +134,10 @@ df_bakery_wday %>%
 + theme = minimal
 + scale = continuous, scale_y_sqrt (Straightening)
 
-### explanation:
-+ geom: I chose for histogram so I can distribute the count of occurrences in bins of 1 hour
-with having Daypart as a fill color (categorical: color hue, 'Tamara Munzer') in dodge position (T1, less log error in 'Tamara Munzer') ('Michael Friendly' distinction of color, day parts) which gives the possibility to group the hours and day parts together for a better perceiving and quick understanding of the data (decode)
-+ border color: I chose for white so the observer can get a better feeling of the distribution
-over the hours and it makes the visualization less harsh
-+ facet: I found the subplots in week day necessary so the eye of the observer can travel much
-smoother. So the observer can get more detail of a certain day.
-+ theme: I found the minimal fashion a good taste (High Data/ Ink, 'Tufte wisdom'), it takes away the noise
-+ y label: I chose to not use it because the heights of the bars already give a certain understanding of the sales
-+ scale: here I used straightening for y-axis (Tukey) so we can have better view of some day parts, e.g. Night and Evening
 
 
-```{r good visualization}
 
-# Question: what are the hours of the week days that deliver high sales?
+```{r visualization}
 
 df_bakery_wday %>% 
   filter(hour > 1) %>% 
@@ -165,36 +156,4 @@ df_bakery_wday %>%
 ```
 
 
-## Bad visualization
-
-### info:
-+ geom = points, dots
-+ mapping = x maps counts, y maps Items
-+ stat = identity
-+ color = static 'red'
-+ theme = manual inputs
-
-### explanation:
-+ geom: The visualization doesn't has the correct geometrical object for categorical vs continues variables which makes perceiving the information (decode) hard.
-+ color: doesn't fit the rule of Tamara Munzer because an ordered variable is using color hue which are meant for categorical variables. And makes relating a point
-to a item difficult.
-+ overplotting: hard to read the labels and the points, mostly overlapping
-+ Doesn't fit Tufte's principles because it has Low Data/ Ink ratio which makes perceiving data difficult, also the colors are harsh
-
-```{r bad visualization}
-
-# Question: how many items were sold between 2016 and 2017?
-
-df_bakery %>% 
-  count(Items) %>% 
-  ggplot(aes(n, Items)) +
-  geom_point(color='red', show.legend = FALSE) +
-  theme(
-    axis.text.y=element_text(angle=20),
-    panel.background = element_rect(fill = 'blue'), 
-    panel.grid.major = element_line(colour = "black"),
-    panel.border = element_rect(linetype = 0, fill = NA)) +
-  labs(title = "Sales per item", subtitle = 'number of items sold between 2016-2017', caption='Based on data from "The Bread Basket" \n 2016-2017')
-
-```
 
